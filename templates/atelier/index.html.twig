@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}{% endblock %}
+{% block title %}Atelier index{% endblock %}
+
+{% block body %}
+    <h1>{{ titre }}</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Instructeur</th>
+                <th>note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for atelier in ateliers %}
+            <tr class="table-light">
+                <td>{{ atelier.nom }}</td>
+                <td>{{ atelier.description }}</td>
+                <td>{{ atelier.user.nom }}</td>
+                {#calculer le vote moyen de cette atellier#}
+                {% if atelier.notes|length > 0 %}
+                    {% set somme = 0 %}
+                    {% for note in atelier.notes %}
+                        {% set somme = somme + note.valeur %}
+                    {% endfor %}
+                    {% set moyenne = somme / atelier.notes|length %}
+                    {#afficher la notre#}
+                    {% if moyenne is defined %}
+                        <td>{{ moyenne }} ({{ atelier.notes|length}} )  </td>
+                    {% else %}
+                        <td>p/</td>
+                    {% endif %}
+                {% else %}
+                    <td>/</td>
+                {% endif %}
+
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_atelier_show', {'id': atelier.id}) }}">Détails</a>
+                    {% if app.user  %}
+                        {% if app.user not in atelier.participants %}
+                            <a href="{{ path('app_atelier_inscription', {'id': atelier.id}) }}" class="btn btn-warning">S'inscrire</a>
+                        {% else %}
+                            <a href="{{ path('app_atelier_desinscription', {'id': atelier.id}) }}" class="btn btn-danger">Se désinscrire</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">aucune atelier existe</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

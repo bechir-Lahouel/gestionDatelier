@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}{% endblock %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <div  style="display: flex;">
+        <a class="btn btn-secondary" style="margin-right: 5px" href="{{ path('app_atelier_index') }}"><i class="fa-solid fa-arrow-left"></i></a>
+        <h3>Information sur le Profil</h3>
+    </div>
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

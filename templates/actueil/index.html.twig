@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/actueill.css') }}">
+
+{% endblock %}
+
+{% block title %}Hello ActueilController!{% endblock %}
+
+{% block body %}
+    <h1>Devoir Maison Symfony</h1>
+    <h3>Membres du Groupe</h3>
+    <main class="page-content">
+        <div class="card" >
+            <div class="content">
+                <h2 class="title">Bechir lahouel</h2>
+                <p class="copy">Bechir.lahouel@etu.univ-orleans.fr</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2 class="title">Melissa chabane</h2>
+                <p class="copy">Melissa.chabane@etu.univ-orleans.fr</p>
+            </div>
+        </div>
+        <div class="card" >
+            <div class="content">
+                <h2 class="title">Hanane brocard</h2>
+                <p class="copy">Hanane.brocard@etu.univ-orleans.fr</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2 class="title">yanis.houchal</h2>
+                <p class="copy">yanis.houchal@etu.univ-orleans.fr</p>
+            </div>
+        </div>
+    </main>
+{% endblock %}

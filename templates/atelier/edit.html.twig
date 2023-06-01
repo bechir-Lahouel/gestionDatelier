@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}{% endblock %}
+
+{% block title %}Edit Atelier{% endblock %}
+
+{% block body %}
+    <div  style="display: flex;">
+        <a class="btn btn-secondary" style="margin-right: 5px" href="{{ path('app_atelier_index') }}"><i class="fa-solid fa-arrow-left"></i></a>
+        <h3>Edit Atelier</h3>
+    </div>
+    {{ include('atelier/_form.html.twig', {'button_label': 'Update'}) }}
+{% endblock %}

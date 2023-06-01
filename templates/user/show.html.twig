@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div  style="display: flex;">
+        <a class="btn btn-secondary" style="margin-right: 5px" href="{{ path('app_atelier_index') }}"><i class="fa-solid fa-arrow-left"></i></a>
+        <h3>Utilisteur</h3>
+    </div>
+    <table class="table table-hover">
+        <tbody>
+            <tr>
+                <th class="table-dark" style="width: 80px ;">Email</th>
+                <td class="table-light">{{ user.email }}</td>
+            </tr>
+
+            <tr>
+                <th class="table-dark" style="width: 80px ;">Nom</th>
+                <td class="table-light">{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th class="table-dark" style="width: 80px ;">Prenom</th>
+                <td class="table-light">{{ user.prenom }}</td>
+            </tr>
+            {% if is_granted('ROLE_ADMIN') %}
+            <tr>
+                <th class="table-dark" style="width: 80px ;">Role</th>
+                <td class="table-light">
+                    <form class="btn-group" role="group" aria-label="Basic radio toggle button group" method="post" action="{{ path('app_user_rolUpdate',{'id': user.id}) }}">
+                        <input type="radio" class="btn-check radioS" name="role" id="btnradio1" autocomplete="off" value="ROLE_ADMIN" {{ 'ROLE_ADMIN' in user.roles ? 'checked' : '' }} wfd-id="id6">
+                        <label class="btn btn-outline-primary" for="btnradio1"  >admin</label>
+                        <input type="radio" class="btn-check radioS" name="role" id="btnradio2" autocomplete="off" value="ROLE_INSTRUCTEUR" {{ 'ROLE_INSTRUCTEUR' in user.roles ? 'checked' : '' }} wfd-id="id7">
+                        <label class="btn btn-outline-primary" for="btnradio2"  >instructeur</label>
+                        <input type="radio" class="btn-check radioS" name="role" id="btnradio3" autocomplete="off" value="ROLE_APPRENTI" {{ 'ROLE_APPRENTI' in user.roles ? 'checked' : '' }} wfd-id="id8">
+                        <label class="btn btn-outline-primary" for="btnradio3"  >apprenti</label>
+                        <button type="submit" class="btn btn-primary" style="margin-left: 10px">Modifier</button>
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
